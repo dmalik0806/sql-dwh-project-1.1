@@ -1,0 +1,4 @@
+2026-05-24 10:10:43,121 - INFO - Initiating Claims ingestion
+2026-05-24 10:10:43,122 - INFO - Reading file: data/raw/claims_data.csv
+2026-05-24 10:10:43,124 - INFO - Count of records at source: 1000, total columns: 7
+2026-05-24 10:10:43,132 - INFO - Current file ingested successfully

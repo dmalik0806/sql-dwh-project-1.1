@@ -1,4 +1,4 @@
-from utils.logger import get_logger
+from ingestion.ingest_claims import ingest_claims
 
-logger = get_logger(__name__)
-logger.info("Week 1 Day 1 setup complete.")
+if __name__ == "__main__":
+    ingest_claims()
