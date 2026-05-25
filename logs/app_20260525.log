@@ -1,0 +1,16 @@
+2026-05-25 11:21:05,243 - INFO - Initiating Claims ingestion
+2026-05-25 11:21:05,243 - INFO - Reading file: data/raw/claims_data.csv
+2026-05-25 11:21:05,248 - INFO - CSV File loaded successfully
+2026-05-25 11:21:05,252 - INFO - Duplicates removed: 0
+2026-05-25 11:21:05,257 - INFO - Data Cleaning Updated
+2026-05-25 11:21:05,259 - INFO - Null Counts: ClaimID           0
+PatientID         0
+ProviderID        0
+DateOfService     0
+DiagnosisCode     0
+ClaimedAmount     0
+ApprovedAmount    0
+dtype: int64
+2026-05-25 11:21:05,259 - INFO - Total count of invalid claims: 0
+2026-05-25 11:21:05,260 - INFO - Total count of Invalid Approvals: 0
+2026-05-25 11:21:05,264 - INFO - Processed file data/processed/claims_processed.csv saved at data/processed
