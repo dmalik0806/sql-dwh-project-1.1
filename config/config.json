@@ -3,6 +3,7 @@
   "cleaned_path": "data/cleaned",
   "processed_path": "data/processed",
   "error_path":"data/error",
+  "audit_path":"data/audit",
   "db_server": "localhost",
   "db_name": "HealthcareClaims",
   "table_name": "ProcessedFileLog"

@@ -4,16 +4,29 @@ from utils.logger import get_logger
 from utils.config import load_config
 from utils.dq_checks import generate_dq_report
 from utils.dq_checks import collect_error_records
+from utils.metadata import get_file_metadata
+from datetime import datetime
+
+
 
 logger=get_logger(__name__)
 
 def ingest_claims():
     logger.info("Initiating Claims ingestion")
-
+    start_time = datetime.now()
     config=load_config()
     input_path=config["input_path"]
     file_path=f"{input_path}/claims_data.csv"
     logger.info(f"Reading file: {file_path}")
+
+    #Capturing metadata of the input file
+    metadata = get_file_metadata(file_path)
+    audit_path=config["audit_path"]
+    logger.info(f"Source File: {metadata['FileName']}")
+    logger.info(f"File Size KB: {metadata['FileSizeKB']}")
+    metadata_df = pd.DataFrame([metadata])
+    metadata_df.to_csv(f"{audit_path}/metadata_report.csv",index=False)
+
 
     df=pd.read_csv(file_path)
     logger.info("CSV File loaded successfully")
@@ -76,6 +89,33 @@ def ingest_claims():
     error_output_file=f"{error_output_path}/error_records.csv"
     error_report_df.to_csv(error_output_file,index=False)
     logger.info(f"Error file {error_output_file} saved at {error_output_path} with {len(error_report_df)} records")
+
+    end_time = datetime.now()
+    runtime_seconds = (end_time - start_time).total_seconds()
+    logger.info(f"Pipeline Runtime: {runtime_seconds}")
+
+    summary_df = pd.DataFrame([
+    {
+        "SourceFile": metadata["FileName"],
+        "InputRows": initial_count,
+        "ProcessedRows": len(df),
+        "ErrorRows": len(error_report_df),
+        "RuntimeSeconds": runtime_seconds
+    }
+    ])
+
+    summary_df.to_csv(f"{audit_path}/processing_summary.csv",index=False)
+
+    logger.info(
+        f"""
+        Source File      : {metadata['FileName']}
+        Input Rows       : {initial_count}
+        Processed Rows   : {len(df)}
+        Error Rows       : {len(error_report_df)}
+        Runtime Seconds  : {runtime_seconds}
+        """
+    )
+
 
 
 
