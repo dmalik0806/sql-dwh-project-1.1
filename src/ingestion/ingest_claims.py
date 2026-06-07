@@ -2,6 +2,8 @@ import pandas as pd
 import os
 from utils.logger import get_logger
 from utils.config import load_config
+from utils.dq_checks import generate_dq_report
+from utils.dq_checks import collect_error_records
 
 logger=get_logger(__name__)
 
@@ -49,11 +51,32 @@ def ingest_claims():
     invalid_amount_rec = df[df["ApprovedAmount"]>df["ClaimedAmount"]]
     logger.info(f"Total count of Invalid Approvals: {len(invalid_amount_rec)}")
 
+    #Generate DQ report
+    dq_report_df=generate_dq_report(df)
+    logger.info(f"DQ Report generated successfully")
+
+    #Generate error report
+    error_report_df=collect_error_records(df)
+    logger.info(f"Error Report generated successfully")
+
     output_path=config["processed_path"]
     os.makedirs(output_path, exist_ok=True)
     output_file=f"{output_path}/claims_processed.csv"
     df.to_csv(output_file,index=False)
     logger.info(f"Processed file {output_file} saved at {output_path}")
+
+    #Storing DQ report in csv
+    dq_output_file=f"{output_path}/dq_report.csv"
+    dq_report_df.to_csv(dq_output_file,index=False)
+    logger.info(f"DQ Report saved at: {dq_output_file}")
+
+    #Storing error records in csv
+    error_output_path=config["error_path"]
+    os.makedirs(error_output_path, exist_ok=True)
+    error_output_file=f"{error_output_path}/error_records.csv"
+    error_report_df.to_csv(error_output_file,index=False)
+    logger.info(f"Error file {error_output_file} saved at {error_output_path} with {len(error_report_df)} records")
+
 
 
 

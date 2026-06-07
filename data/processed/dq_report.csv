@@ -1,0 +1,8 @@
+ColumnName,NullCount,DuplicateCount,DataType
+ClaimID,0,0,int64
+PatientID,0,708,object
+ProviderID,0,950,object
+DateOfService,0,878,datetime64[ns]
+DiagnosisCode,0,994,object
+ClaimedAmount,0,15,float64
+ApprovedAmount,0,25,float64
