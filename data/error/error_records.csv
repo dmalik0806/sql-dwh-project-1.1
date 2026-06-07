@@ -1,0 +1,14 @@
+ClaimID,PatientID,ProviderID,DateOfService,DiagnosisCode,ClaimedAmount,ApprovedAmount,ErrorReason
+1011,P171,PR135,2026-01-04,DG03,-1.0,15770.0,Negative Claim Amount
+1012,P080,PR125,2026-01-27,NA,-1.0,17445.0,Negative Claim Amount
+1013,P022,PR144,2026-04-27,DG04,-1.0,20222.0,Negative Claim Amount
+1001,P052,PR109,2026-01-09,DG01,14551.0,19077.0,Approved Amount greater than Claimed Amount
+1002,P245,PR137,2026-02-04,DG03,10212.0,12899.0,Approved Amount greater than Claimed Amount
+1003,P051,PR125,2026-01-24,DG05,3091.0,3139.0,Approved Amount greater than Claimed Amount
+1011,P171,PR135,2026-01-04,DG03,-1.0,15770.0,Approved Amount greater than Claimed Amount
+1012,P080,PR125,2026-01-27,NA,-1.0,17445.0,Approved Amount greater than Claimed Amount
+1013,P022,PR144,2026-04-27,DG04,-1.0,20222.0,Approved Amount greater than Claimed Amount
+1004,P248,PR111,2026-02-25,NA,9874.0,9563.0,Missing Diagnosis Code
+1006,P053,PR112,2026-03-20,NA,0.0,0.0,Missing Diagnosis Code
+1009,P298,PR125,2026-01-01,NA,4850.0,4073.0,Missing Diagnosis Code
+1012,P080,PR125,2026-01-27,NA,-1.0,17445.0,Missing Diagnosis Code

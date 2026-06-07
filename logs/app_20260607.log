@@ -1,0 +1,39 @@
+2026-06-07 08:14:51,076 - INFO - Initiating Claims ingestion
+2026-06-07 08:14:51,080 - INFO - Reading file: data/raw/claims_data.csv
+2026-06-07 08:14:51,086 - INFO - CSV File loaded successfully
+2026-06-07 08:14:51,093 - INFO - Duplicates removed: 0
+2026-06-07 08:14:51,106 - INFO - Data Cleaning Updated
+2026-06-07 08:14:51,109 - INFO - Null Counts: ClaimID           0
+PatientID         0
+ProviderID        0
+DateOfService     0
+DiagnosisCode     0
+ClaimedAmount     0
+ApprovedAmount    0
+dtype: int64
+2026-06-07 08:14:51,111 - INFO - Total count of invalid claims: 3
+2026-06-07 08:14:51,112 - INFO - Total count of Invalid Approvals: 6
+2026-06-07 08:14:51,116 - INFO - DQ Report generated successfully
+2026-06-07 08:14:51,125 - INFO - Error Report generated successfully
+2026-06-07 08:14:51,136 - INFO - Processed file data/processed/claims_processed.csv saved at data/processed
+2026-06-07 08:14:51,138 - INFO - DQ Report saved at: data/processed/dq_report.csv
+2026-06-07 08:15:42,204 - INFO - Initiating Claims ingestion
+2026-06-07 08:15:42,204 - INFO - Reading file: data/raw/claims_data.csv
+2026-06-07 08:15:42,207 - INFO - CSV File loaded successfully
+2026-06-07 08:15:42,208 - INFO - Duplicates removed: 0
+2026-06-07 08:15:42,212 - INFO - Data Cleaning Updated
+2026-06-07 08:15:42,213 - INFO - Null Counts: ClaimID           0
+PatientID         0
+ProviderID        0
+DateOfService     0
+DiagnosisCode     0
+ClaimedAmount     0
+ApprovedAmount    0
+dtype: int64
+2026-06-07 08:15:42,213 - INFO - Total count of invalid claims: 3
+2026-06-07 08:15:42,213 - INFO - Total count of Invalid Approvals: 6
+2026-06-07 08:15:42,215 - INFO - DQ Report generated successfully
+2026-06-07 08:15:42,218 - INFO - Error Report generated successfully
+2026-06-07 08:15:42,225 - INFO - Processed file data/processed/claims_processed.csv saved at data/processed
+2026-06-07 08:15:42,226 - INFO - DQ Report saved at: data/processed/dq_report.csv
+2026-06-07 08:15:42,227 - INFO - Error file data/error/error_records.csv saved at data/error with 13 records

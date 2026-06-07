@@ -2,6 +2,7 @@
   "input_path": "data/raw",
   "cleaned_path": "data/cleaned",
   "processed_path": "data/processed",
+  "error_path":"data/error",
   "db_server": "localhost",
   "db_name": "HealthcareClaims",
   "table_name": "ProcessedFileLog"
