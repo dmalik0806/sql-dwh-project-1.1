@@ -6,6 +6,8 @@ from utils.dq_checks import generate_dq_report
 from utils.dq_checks import collect_error_records
 from utils.metadata import get_file_metadata
 from datetime import datetime
+from utils.transformations import clean_claims_data
+from utils.file_writer import save_csv
 
 
 
@@ -30,39 +32,16 @@ def ingest_claims():
 
     df=pd.read_csv(file_path)
     logger.info("CSV File loaded successfully")
-    initial_count=len(df)
-    df=df.drop_duplicates()
-    rem_dup_count=len(df)
-    logger.info(f"Duplicates removed: {initial_count-rem_dup_count}")
-
-    #stripping whitespace from string columns
-    string_columns=['PatientID','ProviderID','DiagnosisCode']
-    for col in string_columns:
-        df[col] = df[col].astype(str).str.strip()
-
-    # updating data types
-    df["DateOfService"] = pd.to_datetime(df["DateOfService"],format="%d-%m-%Y")
-    df["ClaimedAmount"] = pd.to_numeric(df["ClaimedAmount"])
-    df["ApprovedAmount"] = pd.to_numeric(df["ApprovedAmount"])
-    
-    #handling missing values
-    df["DiagnosisCode"]=df["DiagnosisCode"].replace("nan", pd.NA).fillna("NA")
-    df["ClaimedAmount"]=df["ClaimedAmount"].fillna(0)
-    df["ApprovedAmount"]=df["ApprovedAmount"].fillna(0)
-    df["DateOfService"]=df["DateOfService"].fillna(pd.Timestamp("1900-01-01"))
-
+    initial_count = len(df)
+    # Added transformations.py to clean the csv file data
+    df,rem_dup_count = clean_claims_data(df)
+    logger.info(f"Duplicates removed: {rem_dup_count}")
     logger.info("Data Cleaning Updated")
 
     #Data Validation checks
     null_counts=df.isnull().sum()
     print(f"Total Null Counts in current file: {null_counts}")
     logger.info(f"Null Counts: {null_counts}")
-
-    negative_claims=df[df["ClaimedAmount"]<0]
-    logger.info(f"Total count of invalid claims: {len(negative_claims)}")
-
-    invalid_amount_rec = df[df["ApprovedAmount"]>df["ClaimedAmount"]]
-    logger.info(f"Total count of Invalid Approvals: {len(invalid_amount_rec)}")
 
     #Generate DQ report
     dq_report_df=generate_dq_report(df)
@@ -73,21 +52,16 @@ def ingest_claims():
     logger.info(f"Error Report generated successfully")
 
     output_path=config["processed_path"]
-    os.makedirs(output_path, exist_ok=True)
-    output_file=f"{output_path}/claims_processed.csv"
-    df.to_csv(output_file,index=False)
+    output_file=save_csv(df,output_path,"claims_processed.csv")
     logger.info(f"Processed file {output_file} saved at {output_path}")
 
     #Storing DQ report in csv
-    dq_output_file=f"{output_path}/dq_report.csv"
-    dq_report_df.to_csv(dq_output_file,index=False)
+    dq_output_file=save_csv(dq_report_df,output_path,"dq_report.csv")
     logger.info(f"DQ Report saved at: {dq_output_file}")
 
     #Storing error records in csv
     error_output_path=config["error_path"]
-    os.makedirs(error_output_path, exist_ok=True)
-    error_output_file=f"{error_output_path}/error_records.csv"
-    error_report_df.to_csv(error_output_file,index=False)
+    error_output_file=save_csv(error_report_df,error_output_path,"error_records.csv")
     logger.info(f"Error file {error_output_file} saved at {error_output_path} with {len(error_report_df)} records")
 
     end_time = datetime.now()
