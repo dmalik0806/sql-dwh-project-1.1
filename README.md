@@ -5,6 +5,8 @@ Healthcare Claims Data Engineering Project
 # Overview
 
 This project is a hands-on Data Engineering implementation focused on building a scalable healthcare claims ingestion and transformation pipeline using Python, SQL Server, and modern data engineering practices.
+The project follows a modular ETL architecture where ingestion, transformation, validation, data quality, metadata management, 
+and file operations are separated into independent reusable components.
 
 The project is being developed incrementally to simulate real-world enterprise ETL/data warehousing workflows including:
 Data ingestion
@@ -32,8 +34,22 @@ sql/            -> SQL scripts and database objects
 config/         -> Centralized configuration files
 notebooks/      -> Data exploration and analysis
 
+# Project Architecture
+src/
+├── ingestion/
+│   └── ingest_claims.py
+│
+├── utils/
+│   ├── config.py
+│   ├── logger.py
+│   ├── transformations.py
+│   ├── validations.py
+│   ├── dq_checks.py
+│   ├── metadata.py
+│   └── file_writer.py
 
 # Phase 1:
 Project structure initialized
 Logging utility implemented
 Configuration-driven setup completed
+
