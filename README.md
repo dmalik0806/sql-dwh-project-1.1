@@ -35,18 +35,8 @@ config/         -> Centralized configuration files
 notebooks/      -> Data exploration and analysis
 
 # Project Architecture
-src/
-├── ingestion/
-│   └── ingest_claims.py
-│
-├── utils/
-│   ├── config.py
-│   ├── logger.py
-│   ├── transformations.py
-│   ├── validations.py
-│   ├── dq_checks.py
-│   ├── metadata.py
-│   └── file_writer.py
+<img width="360" height="252" alt="image" src="https://github.com/user-attachments/assets/942cf673-72e7-416a-8027-0126ecd50a5d" />
+
 
 # Phase 1:
 Project structure initialized
