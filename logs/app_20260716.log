@@ -1,0 +1,28 @@
+2026-07-16 10:17:47,280 - INFO - Initiating Claims ingestion
+2026-07-16 10:17:47,293 - INFO - Reading file: data/raw/claims_data.csv
+2026-07-16 10:17:47,293 - INFO - Source File: claims_data.csv
+2026-07-16 10:17:47,294 - INFO - File Size KB: 43.3
+2026-07-16 10:17:47,312 - INFO - CSV File loaded successfully
+2026-07-16 10:17:47,318 - INFO - Duplicates removed: 0
+2026-07-16 10:17:47,318 - INFO - Data Cleaning Updated
+2026-07-16 10:17:47,319 - INFO - Null Counts: ClaimID           0
+PatientID         0
+ProviderID        0
+DateOfService     0
+DiagnosisCode     0
+ClaimedAmount     0
+ApprovedAmount    0
+dtype: int64
+2026-07-16 10:17:47,321 - INFO - DQ Report generated successfully
+2026-07-16 10:17:47,324 - INFO - Error Report generated successfully
+2026-07-16 10:17:47,326 - INFO - Processed file data/processed/claims_processed.csv saved at data/processed
+2026-07-16 10:17:47,327 - INFO - DQ Report saved at: data/processed/dq_report.csv
+2026-07-16 10:17:47,328 - INFO - Error file data/error/error_records.csv saved at data/error with 13 records
+2026-07-16 10:17:47,328 - INFO - Pipeline Runtime: 0.047457
+2026-07-16 10:17:47,329 - INFO - 
+        Source File      : claims_data.csv
+        Input Rows       : 1000
+        Processed Rows   : 1000
+        Error Rows       : 13
+        Runtime Seconds  : 0.047457
+        

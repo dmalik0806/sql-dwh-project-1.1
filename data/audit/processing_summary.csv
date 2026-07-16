@@ -1,2 +1,2 @@
 SourceFile,InputRows,ProcessedRows,ErrorRows,RuntimeSeconds
-claims_data.csv,1000,1000,13,0.093398
+claims_data.csv,1000,1000,13,0.047457
