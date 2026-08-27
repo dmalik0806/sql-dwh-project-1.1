@@ -8,6 +8,12 @@ from utils.metadata import get_file_metadata
 from datetime import datetime
 from utils.transformations import clean_claims_data
 from utils.file_writer import save_csv
+from utils.file_tracker import (
+    load_processed_files,
+    get_all_input_files,
+    is_file_processed,
+    mark_file_processed
+)
 
 
 
@@ -18,7 +24,15 @@ def ingest_claims():
     start_time = datetime.now()
     config=load_config()
     input_path=config["input_path"]
-    file_path=f"{input_path}/claims_data.csv"
+    tracking_path=config["tracking_path"]
+    processed_df = load_processed_files(tracking_path)
+    files = get_all_input_files(input_path)
+    for file in files:
+        if is_file_processed(file,processed_df):
+            logger.info(f"{file} already processed")
+            continue
+        file_path = os.path.join(input_path, file)
+
     logger.info(f"Reading file: {file_path}")
 
     #Capturing metadata of the input file

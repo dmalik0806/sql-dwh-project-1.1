@@ -4,6 +4,7 @@
   "processed_path": "data/processed",
   "error_path":"data/error",
   "audit_path":"data/audit",
+  "tracking_path":"data/metadata",
   "db_server": "localhost",
   "db_name": "HealthcareClaims",
   "table_name": "ProcessedFileLog"
